@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ExpenseList.css";
+import "../../Component/Expenselistcomponent/Expenselist.css";
 import Modal from "react-modal";
 import ExpenseTrends from "../../Component/Expensetrends/Expensetrends";
 import {
