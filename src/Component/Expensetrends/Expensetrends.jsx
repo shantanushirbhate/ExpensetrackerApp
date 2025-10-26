@@ -1,5 +1,5 @@
 import React from "react";
-import "./ExpenseTrends.css";
+import "../../Component/Expensetrends/Expensetrends.css";
 import {
   BarChart,
   Bar,
