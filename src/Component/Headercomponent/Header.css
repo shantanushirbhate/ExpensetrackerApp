@@ -1,0 +1,206 @@
+.blackbackground {
+  background-color: #3B3B3B;
+}
+
+p {
+  color: white;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 100%;
+  text-align: center;
+}
+
+.greybackground {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #626262;
+  height: auto; /* Make height flexible */
+  border-radius: 10px;
+  margin: 32px;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.lightgreybrackground {
+  background-color: #9B9B9B;
+  width: 355px;
+  height: 181px;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.piechart {
+  width: 355px;
+}
+
+.incomebutton,
+.expense-button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  transition: all 0.2s ease-in-out;
+}
+
+.incomebutton {
+  background: linear-gradient(90deg, #B5DC52 0%, #89E148 100%);
+}
+
+.expense-button {
+  background: linear-gradient(90deg, #FF9595 0%, #FF4747 80%, #FF3838 100%);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input {
+  padding: 8px;
+  margin-top: 10px;
+  font-size: larger;
+  width: 86%;
+  /* border: none; */
+  border-radius: 5px;
+  height: 30px;
+}
+/* pie chart legend */
+.chart-legend {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.chart-legend p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chart-legend span {
+  font-size: 16px;
+}
+
+/* -------- Modal Styling -------- */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #EFEFEFD9;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pop-button {
+  background: linear-gradient(0deg, #F4BB4A, #F4BB4A);
+  color: white;
+  font-size: larger;
+  width: 8rem;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+}
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expense-form input {
+  width: 90%;
+  margin: 8px 0;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.expense-form h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+/* ----------- Responsive Styles ----------- */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .greybackground {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: 25px;
+  }
+
+  .lightgreybrackground {
+    width: 90%;
+    height: auto;
+  }
+
+  .piechart {
+    width: 90%;
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  .incomebutton,
+  .expense-button {
+    font-size: 16px;
+    padding: 8px 14px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .greybackground {
+    margin: 16px;
+    gap: 20px;
+  }
+
+  .lightgreybrackground {
+    width: 100%;
+    padding: 15px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .incomebutton,
+  .expense-button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .modal {
+    width: 90%;
+  }
+
+  .pop-button {
+    width: 6rem;
+    font-size: 14px;
+  }
+}
