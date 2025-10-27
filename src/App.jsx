@@ -3,11 +3,14 @@
 // import viteLogo from '/vite.svg'
 import "./App.css";
 import Header from "./Component/Headercomponent/Header"
+import { SnackbarProvider } from 'notistack';
 
 
 function App() {
   return (
-    <Header/>
+    <SnackbarProvider>
+      <Header />
+      </SnackbarProvider>
   );
 }
 
