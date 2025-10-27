@@ -1,5 +1,5 @@
 import "../../Component/Headercomponent/Header.css";
-import { Pie, PieChart, Tooltip } from "recharts";
+import { Label, Pie, PieChart, Tooltip } from "recharts";
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import ExpenseForm from "../../Component/Expensetable/Expensetable";
@@ -113,8 +113,9 @@ function Header() {
         {/* Wallet Balance */}
         <div className="lightgreybrackground">
           <p>Wallet Balance: ₹{balance}</p>
-          <button className="incomebutton" onClick={() => setIsIncomeModalOpen(true)}>
-            + Add Balance
+          
+          <button className="incomebutton" type="button" onClick={() => setIsIncomeModalOpen(true)}>
+            + Add Income
           </button>
         </div>
 
