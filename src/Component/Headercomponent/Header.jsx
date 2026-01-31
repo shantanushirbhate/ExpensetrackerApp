@@ -8,6 +8,12 @@ import ExpenseList from "../../Component/Expenselistcomponent/Expenselist";
 Modal.setAppElement("#root");
 
 function Header() {
+  useEffect(() => {
+  localStorage.removeItem("expenses");
+  localStorage.removeItem("expense");
+  localStorage.removeItem("balance");
+}, []);
+
   // Load data from localStorage if available
   const [balance, setBalance] = useState(() => {
     return Number(localStorage.getItem("balance")) || 5000;
@@ -37,6 +43,9 @@ function Header() {
   useEffect(() => {
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
+  //handle delete
+
+
 
   // Add income
   const handleAddIncome = () => {
@@ -97,13 +106,16 @@ function Header() {
   // };
 
   // Delete expense
-  const handleDeleteExpense = (index) => {
-    const deleted = expenses[index];
-    const updatedExpenses = expenses.filter((_, i) => i !== index);
-    setExpenses(updatedExpenses);
-    setExpense(updatedExpenses.reduce((sum, e) => sum + e.amount, 0));
-    setBalance(balance + deleted.amount);
-  };
+ const handleDeleteExpense = (id) => {
+  const deleted = expenses.find((e) => e.id === id);
+  if (!deleted) return;
+
+  const updatedExpenses = expenses.filter((e) => e.id !== id);
+
+  setExpenses(updatedExpenses);
+  setExpense(updatedExpenses.reduce((sum, e) => sum + e.amount, 0));
+  setBalance(balance + deleted.amount);
+};
 
   return (
     <div className="blackbackground">
@@ -122,7 +134,7 @@ function Header() {
         {/* Expense */}
         <div className="lightgreybrackground">
           <p>Expense: ₹{expense}</p>
-          <button className="expense-button" onClick={() => setIsExpenseModalOpen(true)}>
+          <button type="button" className="expense-button" onClick={() => setIsExpenseModalOpen(true)}>
             + Add Expense
           </button>
         </div>
@@ -235,11 +247,11 @@ function Header() {
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          placeholder="Enter income amount"
+          placeholder="Income Amount"
         />
         <div className="modal-buttons">
-          <button className="pop-button" onClick={handleAddIncome}>
-            Add
+          <button type="submit" className="pop-button" onClick={handleAddIncome}>
+            Add Balance
           </button>
           <button className="pop-button" onClick={() => setIsIncomeModalOpen(false)}>
             Cancel
@@ -257,6 +269,7 @@ function Header() {
         <ExpenseForm
           onSave={handleExpenseSave}
           editData={editIndex !== null ? expenses[editIndex] : null}
+          onDelete={handleDeleteExpense}
         />
       </Modal>
     </div>

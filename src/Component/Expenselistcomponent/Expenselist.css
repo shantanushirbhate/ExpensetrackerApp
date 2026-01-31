@@ -170,6 +170,9 @@
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+/* .categaoryselectoption{
+
+} */
 
 
 
@@ -192,5 +195,28 @@
 
   .expense-actions {
     align-self: flex-end;
+  }
+}
+/* 📱 Mobile layout fix – chart comes AFTER expense list */
+@media (max-width: 480px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .expense-list-container {
+    order: 1;
+  }
+
+  .expense-chart-container {
+    padding: 15px;
+    order: 2;
+    margin-top: 20px;
+    width: 17.5rem;
+  }
+  .dashboard-container{
+    font-size: 20px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
   }
 }

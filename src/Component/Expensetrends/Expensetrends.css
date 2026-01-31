@@ -17,8 +17,10 @@
   font-size: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .expense-trends-container h2 {
     font-size: 1.1rem;
+    display: flex;
   }
+
 }

@@ -148,6 +148,7 @@ function ExpenseList({ expenses, setExpenses, onDelete }) {
 
             <label>Category</label>
             <select
+             className="selectoption"
               value={editExpense.category}
               onChange={(e) => setEditExpense({ ...editExpense, category: e.target.value })}
             >
@@ -160,9 +161,11 @@ function ExpenseList({ expenses, setExpenses, onDelete }) {
               <option value="Bills">Bills</option>
               <option value="Other">Other</option>
             </select>
+            <br></br>
 
             <label>Date</label>
             <input
+              placeholder="date"
               type="date"
               value={editExpense.date}
               onChange={(e) => setEditExpense({ ...editExpense, date: e.target.value })}

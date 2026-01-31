@@ -176,19 +176,25 @@ input {
 /* Mobile screens */
 @media (max-width: 480px) {
   .greybackground {
-    margin: 16px;
-    gap: 20px;
+    margin: 22px;
+    padding: 23px;
+    width: 16.4rem;
+    
+    
   }
 
   .lightgreybrackground {
-    width: 100%;
-    padding: 15px;
+    width: 14rem;
+    /* padding: 15px; */
+    
   }
 
   p {
     font-size: 18px;
   }
-
+.piechart{
+  margin-left: -150px;
+}
   .incomebutton,
   .expense-button {
     font-size: 14px;

@@ -42,9 +42,10 @@ function ExpenseForm({ onSave, onCancel, balance }) {
 
   return (
     <form onSubmit={handleSubmit} className="expense-form">
-      <h2>Add/Edit Expense</h2>
+      <h2>Add Expense</h2>
 
       <input
+        name="title"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -52,13 +53,14 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       />
 
       <input
+        name="price"
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
         placeholder="Enter expense amount"
       />
-      <select className="selectoption" value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="">Select category</option>
+      <select name="category" className="selectoption" value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option name="category" value="">Select category</option>
         {categories.map((cat, index) => (
           <option key={index} value={cat}>
             {cat}
@@ -67,6 +69,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       </select>
 
       <input
+        name="date" 
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
@@ -74,7 +77,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
 
       <div className="modal-buttons">
         <button type="submit" className="pop-button">
-          Save
+         Add Expense
         </button>
         <button type="button" className="pop-button" onClick={onCancel}>
           Cancel
