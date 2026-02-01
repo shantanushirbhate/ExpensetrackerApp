@@ -1,5 +1,5 @@
 import "../../Component/Headercomponent/Header.css";
-import { Label, Pie, PieChart, Tooltip } from "recharts";
+import { PieChart } from "@mui/x-charts/PieChart";
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import ExpenseForm from "../../Component/Expensetable/Expensetable";
@@ -61,43 +61,46 @@ function Header() {
 
   // Save (add or update) expense
   const handleExpenseSave = (data) => {
-    const value = Number(data.amount);
+  const value = Number(data.amount);
+  if (value <= 0) {
+    alert("Please enter a valid amount!");
+    return;
+  }
 
-    if (value <= 0) {
-      alert("Please enter a valid amount!");
+  if (editIndex !== null) {
+    const updated = [...expenses];
+    const oldExpense = updated[editIndex];
+    const diff = value - oldExpense.amount;
+
+    if (diff > balance) {
+      alert("You cannot exceed your wallet balance!");
       return;
     }
 
-    if (editIndex !== null) {
-      // Edit mode
-      const updated = [...expenses];
-      const oldExpense = updated[editIndex];
-      const diff = value - oldExpense.amount;
-
-      if (diff > balance) {
-        alert("You cannot exceed your wallet balance!");
-        return;
-      }
-
-      updated[editIndex] = data;
-      setExpenses(updated);
-      setExpense(updated.reduce((sum, e) => sum + e.amount, 0));
-      setBalance(balance - diff);
-      setEditIndex(null);
-    } else {
-      // Add mode
-      if (value > balance) {
-        alert("You cannot spend more than your wallet balance!");
-        return;
-      }
-
-      setExpenses([...expenses, data]);
-      setExpense(expense + value);
-      setBalance(balance - value);
+    updated[editIndex] = { ...data, id: oldExpense.id }; // ✅ keep same id
+    setExpenses(updated);
+    setExpense(updated.reduce((sum, e) => sum + e.amount, 0));
+    setBalance(balance - diff);
+    setEditIndex(null);
+  } else {
+    if (value > balance) {
+      alert("You cannot spend more than your wallet balance!");
+      return;
     }
 
-    setIsExpenseModalOpen(false);
-  };
+    const newExpense = {
+      ...data,
+      id: Date.now(), // ✅ UNIQUE ID (CRITICAL)
+    };
+
+    setExpenses([...expenses, newExpense]);
+    setExpense(expense + value);
+    setBalance(balance - value);
+  }
+
+  setIsExpenseModalOpen(false);
+};
+
 
   // Edit expense
   // const handleEditExpense = (exp, index) => {
@@ -107,15 +110,16 @@ function Header() {
 
   // Delete expense
  const handleDeleteExpense = (id) => {
-  const deleted = expenses.find((e) => e.id === id);
-  if (!deleted) return;
+  const deletedExpense = expenses.find((e) => e.id === id);
+  if (!deletedExpense) return;
 
   const updatedExpenses = expenses.filter((e) => e.id !== id);
 
   setExpenses(updatedExpenses);
   setExpense(updatedExpenses.reduce((sum, e) => sum + e.amount, 0));
-  setBalance(balance + deleted.amount);
+  setBalance(balance + deletedExpense.amount);
 };
+
 
   return (
     <div className="blackbackground">
@@ -140,92 +144,113 @@ function Header() {
         </div>
 
         {/* Pie Chart */}
-        <div className="piechart">
-          <PieChart width={350} height={300}>
-            <Pie
-              data={[
-                { name: "Balance", value: balance, fill: "#82ca9d" },
-                ...expenses.reduce((acc, exp) => {
-                  const existing = acc.find((item) => item.name === exp.category);
-                  if (existing) existing.value += exp.amount;
-                  else {
-                    let color;
-                    switch (exp.category) {
-                      case "Food":
-                        color = "#f4a261";
-                        break;
-                      case "Transport":
-                        color = "#2a9d8f";
-                        break;
-                      case "Shopping":
-                        color = "#e76f51";
-                        break;
-                      case "Entertainment":
-                        color = "#f4d35e";
-                        break;
-                      case "Health":
-                        color = "#8ac926";
-                        break;
-                      case "Bills":
-                        color = "#264653";
-                        break;
-                      default:
-                        color = "#6c757d";
-                    }
-                    acc.push({ name: exp.category, value: exp.amount, fill: color });
-                  }
-                  return acc;
-                }, []),
-              ]}
-              dataKey="value"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              label
-            />
-            <Tooltip />
-          </PieChart>
+       <div className="piechart">
+  <PieChart
+    series={[
+      {
+        data: [
+          // Wallet balance slice
+          {
+            id: "balance",
+            value: balance,
+            label: "Balance",
+            color: "#82ca9d",
+          },
 
-          {/* Dynamic Legend */}
-          <div className="chart-legend">
-            {expenses
-              .reduce((acc, e) => {
-                if (!acc.find((item) => item.name === e.category))
-                  acc.push({ name: e.category, color: e.category });
-                return acc;
-              }, [])
-              .map((item) => {
-                let color;
-                switch (item.name) {
-                  case "Food":
-                    color = "#f4a261";
-                    break;
-                  case "Transport":
-                    color = "#2a9d8f";
-                    break;
-                  case "Shopping":
-                    color = "#e76f51";
-                    break;
-                  case "Entertainment":
-                    color = "#f4d35e";
-                    break;
-                  case "Health":
-                    color = "#8ac926";
-                    break;
-                  case "Bills":
-                    color = "#264653";
-                    break;
-                  default:
-                    color = "#6c757d";
-                }
-                return (
-                  <p key={item.name}>
-                    <span style={{ color }}>{`●`}</span> {item.name}
-                  </p>
-                );
-              })}
-          </div>
-        </div>
+          // Expense categories
+          ...expenses.reduce((acc, exp) => {
+            const existing = acc.find(
+              (item) => item.label === exp.category
+            );
+
+            if (existing) {
+              existing.value += exp.amount;
+            } else {
+              let color;
+              switch (exp.category) {
+                case "Food":
+                  color = "#f4a261";
+                  break;
+                case "Transport":
+                  color = "#2a9d8f";
+                  break;
+                case "Shopping":
+                  color = "#e76f51";
+                  break;
+                case "Entertainment":
+                  color = "#f4d35e";
+                  break;
+                case "Health":
+                  color = "#8ac926";
+                  break;
+                case "Bills":
+                  color = "#264653";
+                  break;
+                default:
+                  color = "#6c757d";
+              }
+
+              acc.push({
+                id: exp.category,
+                value: exp.amount,
+                label: exp.category,
+                color,
+              });
+            }
+            return acc;
+          }, []),
+        ],
+        innerRadius: 30,
+        outerRadius: 100,
+      },
+    ]}
+    width={205}
+    height={205}
+  />
+
+  {/* Legend */}
+  <div className="chart-legend">
+    {expenses
+      .reduce((acc, e) => {
+        if (!acc.find((item) => item === e.category)) {
+          acc.push(e.category);
+        }
+        return acc;
+      }, [])
+      .map((category) => {
+        let color;
+        switch (category) {
+          case "Food":
+            color = "#f4a261";
+            break;
+          case "Transport":
+            color = "#2a9d8f";
+            break;
+          case "Shopping":
+            color = "#e76f51";
+            break;
+          case "Entertainment":
+            color = "#f4d35e";
+            break;
+          case "Health":
+            color = "#8ac926";
+            break;
+          case "Bills":
+            color = "#264653";
+            break;
+          default:
+            color = "#6c757d";
+        }
+
+        return (
+          <p key={category}>
+            <span style={{ color }}>●</span> {category}
+          </p>
+        );
+      })}
+  </div>
+</div>
+
       </div>
 
       {/* Expense List */}

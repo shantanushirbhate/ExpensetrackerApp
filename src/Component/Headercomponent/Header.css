@@ -78,7 +78,8 @@ input {
   justify-content: center;
   gap: 10px;
   color: white;
-  font-size: 14px;
+  font-size: 5px;
+
 }
 
 .chart-legend p {
@@ -174,27 +175,22 @@ input {
 }
 
 /* Mobile screens */
-@media (max-width: 480px) {
+@media (max-width: 514px) {
   .greybackground {
-    margin: 22px;
-    padding: 23px;
-    width: 16.4rem;
-    
-    
+   width: 73%; 
   }
 
-  .lightgreybrackground {
-    width: 14rem;
-    /* padding: 15px; */
+  /* .lightgreybrackground {
     
-  }
+    
+  } */
 
   p {
     font-size: 18px;
   }
-.piechart{
-  margin-left: -150px;
-}
+/* .piechart{
+ 
+} */
   .incomebutton,
   .expense-button {
     font-size: 14px;
@@ -202,7 +198,7 @@ input {
   }
 
   .modal {
-    width: 90%;
+    width: 90%
   }
 
   .pop-button {
