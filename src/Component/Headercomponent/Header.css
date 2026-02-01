@@ -175,7 +175,7 @@ input {
 }
 
 /* Mobile screens */
-@media (max-width: 514px) {
+@media (max-width: 414px) {
   .greybackground {
    width: 73%; 
   }
