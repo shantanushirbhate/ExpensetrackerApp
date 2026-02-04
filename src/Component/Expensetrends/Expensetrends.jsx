@@ -11,60 +11,67 @@ import {
   Cell,
 } from "recharts";
 
-function ExpenseTrends({ expenses }) {
-  // Group by category
-  const categoryData = expenses.reduce((acc, expense) => {
-    const existing = acc.find((item) => item.category === expense.category);
-    if (existing) {
-      existing.amount += Number(expense.amount);
-    } else {
-      acc.push({
-        category: expense.category,
-        amount: Number(expense.amount),
-      });
-    }
-    return acc;
-  }, []);
+const DEFAULT_CATEGORIES = [
+  { category: "Food", amount: 0 },
+  { category: "Entertainment", amount: 0 },
+  { category: "Travel", amount: 0 },
+];
 
-  // Category colors
-  const colors = [
-    "#FF6B6B",
-    "#FFD93D",
-    "#6BCB77",
-    "#4D96FF",
-    "#FF8C00",
-    "#A66DD4",
-    "#00C9A7",
-  ];
+const getColor = (category) => {
+  switch (category) {
+    case "Food":
+      return "#f4a261";
+    case "Entertainment":
+      return "#f4d35e";
+    case "Travel":
+      return "#2a9d8f";
+    default:
+      return "#6c757d";
+  }
+};
+
+function ExpenseTrends({ expenses }) {
+  const categoryData =
+    expenses.length > 0
+      ? expenses.reduce((acc, expense) => {
+          const existing = acc.find(
+            (item) => item.category === expense.category
+          );
+
+          if (existing) {
+            existing.amount += Number(expense.amount);
+          } else {
+            acc.push({
+              category: expense.category,
+              amount: Number(expense.amount),
+            });
+          }
+          return acc;
+        }, [])
+      : DEFAULT_CATEGORIES;
 
   return (
     <div className="expense-trends-container">
-      <h2>Spending by Category</h2>
-
-      {categoryData.length === 0 ? (
-        <p className="no-data">No expenses added yet</p>
-      ) : (
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            layout="vertical"
-            data={categoryData}
-            margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
-            <YAxis dataKey="category" type="category" width={100} />
-            <Tooltip />
-            <Bar dataKey="amount" radius={[0, 8, 8, 0]}>
-              {categoryData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={colors[index % colors.length]}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      )}
+      <ResponsiveContainer width="100%" height={150}>
+        <BarChart
+          layout="vertical"
+          data={categoryData}
+          margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis type="number" />
+          <YAxis dataKey="category" type="category" width={100} />
+          <Tooltip />
+          <Bar dataKey="amount" radius={[0, 8, 8, 0]}>
+            {categoryData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={getColor(entry.category)}
+              />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

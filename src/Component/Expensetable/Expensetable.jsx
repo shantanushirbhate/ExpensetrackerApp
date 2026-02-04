@@ -8,7 +8,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
   const [date, setDate] = useState("");
   const categories = [
     "Food",
-    "Transport",
+    "Travel",
     "Shopping",
     "Entertainment",
     "Health",
