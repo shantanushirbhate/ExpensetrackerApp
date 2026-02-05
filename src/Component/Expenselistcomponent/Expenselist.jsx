@@ -96,12 +96,10 @@ function ExpenseList({
   return (
     <>
       <span><h2 className="recentransactions">Recent Transactions</h2></span>
-      <br></br>
-<span className="topmostexpenseheading" >Topmost Expenses</span>
+
       <div className="dashboard-container">
         <div className="expense-list-container">
 
-          {/* ✅ FIX: Check expenses.length, NOT currentExpenses.length */}
           {expenses.length === 0 ? (
             <p className="no-expenses">No expenses yet</p>
           ) : (
@@ -186,6 +184,7 @@ function ExpenseList({
               />
 
               <select
+                className="selectoptionbutton"
                 value={editExpense.category}
                 onChange={(e) =>
                   setEditExpense({

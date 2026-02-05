@@ -5,13 +5,6 @@
   text-align: center;
 }
 
-.expense-trends-container h2 {
-  color: #333;
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  font-family: Ubuntu, sans-serif;
-}
-
 .no-data {
   color: #777;
   font-size: 1rem;

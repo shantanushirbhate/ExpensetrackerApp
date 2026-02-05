@@ -17,6 +17,11 @@ const DEFAULT_CATEGORIES = [
   { category: "Travel", amount: 0 },
 ];
 
+const normalizeCategory = (category) => {
+  if (category === "Transport") return "Travel";
+  return category;
+};
+
 const getColor = (category) => {
   switch (category) {
     case "Food":
@@ -30,29 +35,31 @@ const getColor = (category) => {
   }
 };
 
-function ExpenseTrends({ expenses }) {
+function ExpenseTrends({ expenses = [] }) {
   const categoryData =
     expenses.length > 0
       ? expenses.reduce((acc, expense) => {
+          const normalizedCategory = normalizeCategory(expense.category);
+
           const existing = acc.find(
-            (item) => item.category === expense.category
+            (item) => item.category === normalizedCategory
           );
 
           if (existing) {
             existing.amount += Number(expense.amount);
           } else {
             acc.push({
-              category: expense.category,
+              category: normalizedCategory,
               amount: Number(expense.amount),
             });
           }
+
           return acc;
         }, [])
       : DEFAULT_CATEGORIES;
 
   return (
     <div className="expense-trends-container">
-      
       <ResponsiveContainer width="100%" height={150}>
         <BarChart
           layout="vertical"

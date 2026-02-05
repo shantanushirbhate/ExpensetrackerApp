@@ -10,7 +10,7 @@ Modal.setAppElement("#root");
 const DEFAULT_CATEGORIES = [
   { label: "Food", color: "#f4a261" },
   { label: "Entertainment", color: "#f4d35e" },
-  { label: "Transport", color: "#2a9d8f" },
+  { label: "Travel", color: "#2a9d8f" },
 ];
 
 function Header() {
