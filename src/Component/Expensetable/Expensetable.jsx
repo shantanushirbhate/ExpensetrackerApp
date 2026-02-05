@@ -3,7 +3,7 @@ import "../../Component/Expensetable/Expensetable.css"
 
 function ExpenseForm({ onSave, onCancel, balance }) {
   const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState("");
+  const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState("");
   const categories = [
@@ -20,7 +20,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
     e.preventDefault();
 
     // Validation
-    const value = Number(amount);
+    const value = Number(price);
     if (!title || !category || !date || value <= 0) {
       alert("Please fill all fields with valid values!");
       return;
@@ -35,7 +35,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
 
     // Reset fields
     setTitle("");
-    setAmount("");
+    setPrice("");
     setCategory("");
     setDate("");
   };
@@ -55,8 +55,8 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       <input
         name="price"
         type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
         placeholder="Enter expense amount"
       />
       <select name="category" className="selectoption" value={category} onChange={(e) => setCategory(e.target.value)}>
