@@ -25,12 +25,14 @@ function Header() {
     setExpenses([]);
   }, []);
 
-  const [balance, setBalance] = useState(
-    () => Number(localStorage.getItem("balance")) || 5000
+ const [balance, setBalance] = useState(() =>
+    Number(localStorage.getItem("balance")) || 5000
   );
-  const [expense, setExpense] = useState(
-    () => Number(localStorage.getItem("expense")) || 0
+
+  const [expense, setExpense] = useState(() =>
+    Number(localStorage.getItem("expense")) || 0
   );
+
   const [expenses, setExpenses] = useState(() => {
     const saved = localStorage.getItem("expenses");
     return saved ? JSON.parse(saved) : [];
@@ -41,7 +43,7 @@ function Header() {
   const [isExpenseModalOpen, setIsExpenseModalOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  useEffect(() => {
+ useEffect(() => {
     localStorage.setItem("balance", balance);
   }, [balance]);
 
@@ -159,6 +161,7 @@ function Header() {
         <div className="lightgreybrackground">
           <p>Wallet Balance: ₹{balance}</p>
           <button
+            type="submit"
             className="incomebutton"
             onClick={() => setIsIncomeModalOpen(true)}
           >
