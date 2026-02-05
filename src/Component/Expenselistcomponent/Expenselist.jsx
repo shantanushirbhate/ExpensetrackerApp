@@ -95,8 +95,9 @@ function ExpenseList({
 
   return (
     <>
-      <h2 className="recentransactions">Recent Transactions</h2>
-
+      <span><h2 className="recentransactions">Recent Transactions</h2></span>
+      <br></br>
+<span className="topmostexpenseheading" >Topmost Expenses</span>
       <div className="dashboard-container">
         <div className="expense-list-container">
 

@@ -49,7 +49,11 @@
   height: 36px;
   margin-right: 12px; /* space between icon and title */
 }
-
+.topmostexpenseheading{
+  color: white;
+  font-size: x-large;
+  margin-left: 20rem;
+}
 .expense-info {
   display: flex;
   flex-direction: column;

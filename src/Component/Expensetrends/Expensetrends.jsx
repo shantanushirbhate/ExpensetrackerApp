@@ -52,6 +52,7 @@ function ExpenseTrends({ expenses }) {
 
   return (
     <div className="expense-trends-container">
+      
       <ResponsiveContainer width="100%" height={150}>
         <BarChart
           layout="vertical"
