@@ -14,15 +14,15 @@ const DEFAULT_CATEGORIES = [
 ];
 
 function Header() {
-  useEffect(() => {
-    localStorage.setItem("balance", 5000);
-    localStorage.setItem("expense", 0);
-    localStorage.setItem("expenses", JSON.stringify([]));
+  // useEffect(() => {
+  //   localStorage.setItem("balance", 5000);
+  //   localStorage.setItem("expense", 0);
+  //   localStorage.setItem("expenses", JSON.stringify([]));
 
-    setBalance(5000);
-    setExpense(0);
-    setExpenses([]);
-  }, []);
+  //   setBalance(5000);
+  //   setExpense(0);
+  //   setExpenses([]);
+  // }, []);
 
  const [balance, setBalance] = useState(() =>
     Number(localStorage.getItem("balance")) || 5000
