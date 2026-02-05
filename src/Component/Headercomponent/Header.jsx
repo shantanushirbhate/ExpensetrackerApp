@@ -15,7 +15,6 @@ const DEFAULT_CATEGORIES = [
 
 function Header() {
   useEffect(() => {
-    localStorage.clear();
     localStorage.setItem("balance", 5000);
     localStorage.setItem("expense", 0);
     localStorage.setItem("expenses", JSON.stringify([]));
