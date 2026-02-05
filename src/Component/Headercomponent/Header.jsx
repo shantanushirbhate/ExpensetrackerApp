@@ -228,9 +228,10 @@ function Header() {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="Income Amount"
+
         />
         <div className="modal-buttons">
-          <button className="pop-button" onClick={handleAddIncome}>
+          <button type="submit" className="pop-button" onClick={handleAddIncome}>
             Add Balance
           </button>
           <button
