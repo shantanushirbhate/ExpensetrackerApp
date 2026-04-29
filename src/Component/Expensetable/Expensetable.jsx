@@ -69,6 +69,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       </select>
 
       <input
+        className="selectoption" 
         name="date" 
         type="date"
         value={date}
