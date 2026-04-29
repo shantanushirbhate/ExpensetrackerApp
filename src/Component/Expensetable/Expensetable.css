@@ -11,7 +11,7 @@
 /* 📱 Mobile responsive */
 @media (max-width: 700px) {
   .selectoption {
-    width: 100%;       /* full width on mobile */
+    width: 318px;       /* full width on mobile */
     font-size: 14px;   /* slightly smaller */
     height: 2.8rem;    /* optional adjustment */
     border: none;
