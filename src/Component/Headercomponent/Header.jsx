@@ -189,8 +189,8 @@ function Header() {
                   outerRadius: 75,
                 },
               ]}
-              width={205}
-              height={200}
+              width={160}
+              height={150}
             />
           )}
 
@@ -243,16 +243,18 @@ function Header() {
       </Modal>
 
       {/* Expense Modal */}
-      <Modal
-        isOpen={isExpenseModalOpen}
-        onRequestClose={() => setIsExpenseModalOpen(false)}
-        className="modal"
-      >
-        <ExpenseForm
-          onSave={handleExpenseSave}
-          editData={editIndex !== null ? expenses[editIndex] : null}
-        />
-      </Modal>
+<Modal
+  isOpen={isExpenseModalOpen}
+  onRequestClose={() => setIsExpenseModalOpen(false)}
+  className="modal"
+>
+  <ExpenseForm
+    onSave={handleExpenseSave}
+    onCancel={() => setIsExpenseModalOpen(false)}  // ✅ FIX
+    balance={balance} // ✅ FIX
+    editData={editIndex !== null ? expenses[editIndex] : null}
+  />
+</Modal>
     </div>
   );
 }

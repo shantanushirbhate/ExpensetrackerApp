@@ -62,7 +62,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       <select name="category" className="selectoption" value={category} onChange={(e) => setCategory(e.target.value)}>
         <option name="category" value="">Select category</option>
         {categories.map((cat, index) => (
-          <option key={index} value={cat}>
+          <option  key={index} value={cat}>
             {cat}
           </option>
         ))}
@@ -79,9 +79,19 @@ function ExpenseForm({ onSave, onCancel, balance }) {
         <button type="submit" className="pop-button">
          Add Expense
         </button>
-        <button type="button" className="pop-button" onClick={onCancel}>
-          Cancel
-        </button>
+       <button
+  type="button"
+  className="pop-button"
+  onClick={() => {
+    setTitle("");
+    setPrice("");
+    setCategory("");
+    setDate("");
+    onCancel && onCancel();
+  }}
+>
+  Cancel
+</button>
       </div>
     </form>
   );
