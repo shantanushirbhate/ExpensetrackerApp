@@ -165,6 +165,7 @@ function ExpenseList({
           {editExpense && (
             <>
               <input
+                    className="selectoptionbutton"
                 type="text"
                 value={editExpense.title}
                 onChange={(e) =>
@@ -173,6 +174,7 @@ function ExpenseList({
               />
 
               <input
+                    className="selectoptionbutton"
                 type="number"
                 value={editExpense.amount}
                 onChange={(e) =>
@@ -184,7 +186,7 @@ function ExpenseList({
               />
 
               <select
-                className="selectoptionbutton"
+                className="selectoptionbutton1"
                 value={editExpense.category}
                 onChange={(e) =>
                   setEditExpense({
@@ -204,6 +206,7 @@ function ExpenseList({
               </select>
 
               <input
+                    className="selectoptionbutton"
                 type="date"
                 value={editExpense.date}
                 onChange={(e) =>

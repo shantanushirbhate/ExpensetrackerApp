@@ -64,7 +64,7 @@ function ExpenseTrends({ expenses = [] }) {
         <BarChart
           layout="vertical"
           data={categoryData}
-          margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
+          margin={{ top: 20, right: 20, left: 40, bottom: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis type="number" />
