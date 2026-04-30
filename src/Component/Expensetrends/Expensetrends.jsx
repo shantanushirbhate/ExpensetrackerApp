@@ -68,7 +68,7 @@ function ExpenseTrends({ expenses = [] }) {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis type="number" />
-          <YAxis dataKey="category" type="category" width={100} />
+          <YAxis dataKey="category" type="category" width={120} />
           <Tooltip />
           <Bar dataKey="amount" radius={[0, 8, 8, 0]}>
             {categoryData.map((entry, index) => (
