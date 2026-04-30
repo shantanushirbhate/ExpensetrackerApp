@@ -68,14 +68,17 @@ function ExpenseForm({ onSave, onCancel, balance }) {
         ))}
       </select>
 
-      <input
-      placeholder="Select Date"
-        name="date" 
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        
-      />
+<input
+  name="date"
+  type={date ? "date" : "text"}
+  placeholder="Select Date"
+  value={date}
+  onFocus={(e) => (e.target.type = "date")}
+  onBlur={(e) => {
+    if (!date) e.target.type = "text";
+  }}
+  onChange={(e) => setDate(e.target.value)}
+/>
 
       <div className="modal-buttons">
         <button type="submit" className="pop-button">
