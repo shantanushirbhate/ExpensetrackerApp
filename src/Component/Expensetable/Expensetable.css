@@ -1,11 +1,11 @@
 /* 🔹 Common input styles (text + date) */
 .expense-form input[type="text"],
 .expense-form input[type="date"] {
-  width: 95%;
+  width: 93%;
   background-color: #fff;
   color: #000;
   border-radius: 5px;
-  padding: 8px;
+  padding: 2.3px;
   height: 2.8rem;
   border: none;
 

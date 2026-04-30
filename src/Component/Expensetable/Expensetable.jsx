@@ -45,6 +45,7 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       <h2>Add Expense</h2>
 
       <input
+        className="selectoption"
         name="title"
         type="text"
         value={title}
@@ -68,7 +69,8 @@ function ExpenseForm({ onSave, onCancel, balance }) {
         ))}
       </select>
 
-<input
+      <input
+        className="selectoption"
   name="date"
   type={date ? "date" : "text"}
   placeholder="Select Date"
