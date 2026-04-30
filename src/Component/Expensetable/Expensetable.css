@@ -1,8 +1,8 @@
 .selectoption {
   padding: 8px;
   font-size: 15px;
-  width: 100%;
- /* optional */
+  width: 95%;
+ 
   border-radius: 5px;
   height: 2.8rem;
   border: none;
@@ -11,7 +11,7 @@
 
 @media (max-width: 800px) {
   .selectoption {
-    width: 100%;
+    width: 95%;
     font-size: 14px;
   }
 }
