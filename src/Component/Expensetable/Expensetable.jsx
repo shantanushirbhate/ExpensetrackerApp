@@ -69,11 +69,12 @@ function ExpenseForm({ onSave, onCancel, balance }) {
       </select>
 
       <input
-      
+      placeholder="Select Date"
         name="date" 
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
+        
       />
 
       <div className="modal-buttons">

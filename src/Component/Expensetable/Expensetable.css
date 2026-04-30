@@ -1,18 +1,44 @@
+/* 🔹 Common input styles (text + date) */
+.expense-form input[type="text"],
+.expense-form input[type="date"] {
+  width: 95%;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  padding: 8px;
+  height: 2.8rem;
+  border: none;
+
+  /* Fix mobile browser styling */
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* 🔹 Date placeholder fix (when it behaves like text) */
+.expense-form input[type="text"]::placeholder {
+  color: #888;
+}
+
+/* 🔹 Select dropdown */
 .selectoption {
+  width: 95%;
   padding: 8px;
   font-size: 15px;
-  width: 95%;
- 
   border-radius: 5px;
   height: 2.8rem;
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
+
+  appearance: none;
+  -webkit-appearance: none;
 }
 
+/* 🔹 Mobile responsive */
 @media (max-width: 800px) {
+  .expense-form input[type="text"],
+  .expense-form input[type="date"],
   .selectoption {
-    width: 95%;
+    width: 95%;   /* better than 95% for mobile */
     font-size: 14px;
-     background-color: rgb(255, 255, 255);
   }
 }
