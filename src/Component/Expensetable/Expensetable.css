@@ -1,7 +1,7 @@
 /* 🔹 Common input styles (text + date) */
 .expense-form input[type="text"],
 .expense-form input[type="date"] {
-  width: 93%;
+  width: 92%;
   background-color: #fff;
   color: #000;
   border-radius: 5px;
